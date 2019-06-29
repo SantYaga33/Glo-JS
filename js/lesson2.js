@@ -12,7 +12,8 @@ let degree = result ** 3;
 console.log(`Возведение числа ${result} в степень ${degreeNum} равно :`, degree);
 
 let degreeNumbers = degree.toString().split('');
-console.log(`Первые два символа ${degree} будут равны :`, degreeNumbers[0] + degreeNumbers[1]);
+alert(`Первые два символа числа ${degree} будут равны : ${degreeNumbers[0] + degreeNumbers[1]}`);
+
 
 
 
