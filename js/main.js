@@ -28,3 +28,5 @@ let langWeek = [ruWeek, enWeek];
 daysWeek = lang === 'ru' ? langWeek[0] : langWeek[1];
 console.log('Проверка :', daysWeek);
 
+let namePerson = prompt('Введите имя');
+let message = namePerson == 'Артем' ? (console.log('Директор')) : namePerson == 'Максим' ? (console.log('Преподаватель')) : (console.log('Студент'));
