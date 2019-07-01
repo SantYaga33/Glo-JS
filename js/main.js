@@ -23,7 +23,7 @@ switch (lang) {
     break;
 }
 console.log('Проверка :', daysWeek);
-// вариант 3
+// вариант 3 не ставим доп проверку на введеные данные - так как  исходим , из того что всего два возможных варианта lang
 let langWeek = [ruWeek, enWeek];
 daysWeek = lang === 'ru' ? langWeek[0] : langWeek[1];
 console.log('Проверка :', daysWeek);
