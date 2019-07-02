@@ -1,3 +1,5 @@
+'use strict';
+
 let money = 12000,
   income = 'фриланс',
   addExpenses = 'аренда, поездки,  няня, садик',
@@ -64,3 +66,14 @@ if (budgetDay >= 800) {
 } else if (budgetDay <= 0 ) {
   console.log('Что то пошло не так');
 }
+
+console.log('4-lesson');
+// == урок 4 ==
+let getExpensesMonth = function() {
+  sumCharges = howMoney.reduce(function (sum, current) {
+    return sum + current;
+  });
+  return sumCharges;
+};
+
+console.log('getExpensesMonth: ', getExpensesMonth());
