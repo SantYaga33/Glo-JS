@@ -13,4 +13,5 @@ let getClearRow = function(row) {
     return rowTrim;
   }
 };
+getClearRow(33);
 console.log( getClearRow('  Тест: Bootstrap vs Grid CSS: что выбрать в 2019 году?  ') );
