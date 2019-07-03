@@ -1,4 +1,16 @@
-let money, income, addExpenses, deposit, mission, period;
+'use strict';
 
-alert('Ну что ж - погнали !!!');
-console.log('Любой тест ))');
+
+let getClearRow = function(row) {
+  if (typeof row !== 'string') {
+    return alert('Упс! Ошибочка! Введите данные ввиде строки');
+  }
+  let rowTrim = row.trim(), rowSliced;
+  if (rowTrim.length > 30) {
+    rowSliced = rowTrim.slice(0, 30);
+    return rowSliced += '...';
+  } else {
+    return rowTrim;
+  }
+};
+console.log( getClearRow('  Тест: Bootstrap vs Grid CSS: что выбрать в 2019 году?  ') );
