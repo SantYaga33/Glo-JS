@@ -9,20 +9,26 @@ arr.forEach( function(e) {
 });
 
 
-let isPrime = function(number) {
-    for (let i = 2; i < number; i++) {
-      if (number % i == 0) {
-         return false;
-      }
-      return true;
+const isPrime = function(num) {
+  let i = 2;
+  do {
+    if (num % i === 0) {
+      return false;
     }
-};
+    i++;
+  } while ( i < num);
+  return true;
+    
+  };  
 
-let getPrimeNumber = function(maxNumber) {
-  for (let i = 2; i < maxNumber; i++) {
-    if ( isPrime(i) ){
-      console.log(`Делители числа ${i}: 1 и ${i}`);
-    }
-  }
-};
-getPrimeNumber(100);
+
+ let getPrimeNumber = function(maxNumber) {
+    for (let i = 2; i <= maxNumber; i++) {
+      if ( isPrime(i) ) {
+        console.log(`Делители числа ${i}: 1 и ${i}`);
+        }
+      }
+    };
+       
+ getPrimeNumber(100);
+
