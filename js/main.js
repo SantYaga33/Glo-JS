@@ -7,7 +7,11 @@ let week = ['воскресенье', 'понедельник', 'вторник'
 let getDayOfWeek = function() {
   for (let i = 0; i < week.length; i++ ) {
     let div = document.createElement('div');
-    if (week[i] == week[currentDay]) {
+
+    if (week[i] == week[currentDay] && week[i] == week[0] || week[i] == week[6]) {
+      div.innerHTML = `<b><i>${week[currentDay]}</i></b><br>`;
+      dayOfWeek.appendChild(div);
+    } else if (week[i] == week[currentDay]) {
       div.innerHTML = `<b>${week[currentDay]}</b><br>`;
       dayOfWeek.appendChild(div);
     } else if (week[i] == week[0] || week[i] == week[6]) {
