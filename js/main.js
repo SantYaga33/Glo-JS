@@ -13,8 +13,10 @@ let appData = {
   income: {},
   addIncome: ['фриланс'],
   expenses: {},
-  addExpenses: ['няня', 'поездки', 'аренда'],
+  addExpenses: [],
   deposit: false,
+  percentDeposit: 0,
+  moneyDeposit: 0,
   mission: 100000,
   period: 12,
   budget: money,
@@ -23,16 +25,31 @@ let appData = {
   expensesMonth: 0,
   numberRequests: 2,
   asking: function () {
-    let howMoneyAnsw, expensesAnsw;
+    if ( confirm('Есть ли у Вас дополнительный источник зароботка?')) {
+       let itemIncome, cashIncome;
+      do {
+        itemIncome = prompt('Какой у Вас дополнительный доход?', 'Фриланс');
+      } while (!isNaN(itemIncome) || itemIncome == '' || itemIncome == null);
+      do {
+        cashIncome = prompt('Сколько в месяц эта работа приносит дополнительного дохода?', 10000);
+      } while (isNaN(cashIncome) || cashIncome == '' || cashIncome == null);
+      appData.income[itemIncome] = cashIncome;
+    }
+    let addExpenses;
+      do {
+        addExpenses = prompt('Перечислите возможные расходы через запятую');
+      } while (!isNaN(addExpenses) || addExpenses == '' || addExpenses == null);
+      appData.addExpenses = addExpenses.toLowerCase().split(',');
+      appData.deposit = confirm('Есть ли у Вас депозит в банке?');
+
     for (let i = 0; i < appData.numberRequests; i++) {
+      let howMoneyAnsw, expensesAnsw;
       do {
         expensesAnsw = prompt('Какие обязательные ежемесячные расходы у вас есть?', 'Какой-то расход');
       } while (!isNaN(expensesAnsw) || expensesAnsw == '' || expensesAnsw == null);
-
       do {
         howMoneyAnsw = prompt('Во сколько это обойдется?', '5000');
       } while (isNaN(howMoneyAnsw) || howMoneyAnsw == '' || howMoneyAnsw == null);
-
       appData.expenses[expensesAnsw] = howMoneyAnsw;
     }
     return (' appData.expenses: ', appData.expenses);
@@ -69,19 +86,58 @@ let appData = {
     } else if (appData.budgetDay <= 0) {
       return ('Что то пошло не так');
     }
-  }
+  },
 
+  getInfoDeposit: function() {
+    do {
+       appData.percentDeposit = prompt('Какой годовой процент?');
+    } while (isNaN(appData.percentDeposit) || appData.percentDeposit == '' || appData.percentDeposit == null);
+    do {
+      appData.moneyDeposit = prompt('Какая сумма вложена?');
+    } while (isNaN(appData.moneyDeposit) || appData.moneyDeposit == '' || appData.moneyDeposit == null);
+  },
+
+  calcSaveMoney: function () {
+    return appData.budgetMonth * appData.period;
+  }
 };
 
-appData.asking();
 
-console.log(`Расходы за месяц составят: ${appData.getExpensesMonth()}`);
-console.log(`Достигнем цели за ${appData.getTargetMonth()} месяцев(а)`);
-console.log(`Наш уровень дохода: ${appData.getStatusIncome()}`);
+appData.asking();
+// console.log('appData.income: ', appData.income);
+// console.log('appData.expenses: ', appData.expenses);
+// console.log(`Расходы за месяц составят: ${appData.getExpensesMonth()}`);
+// console.log(`Достигнем цели за ${appData.getTargetMonth()} месяцев(а)`);
+// console.log(`Наш уровень дохода: ${appData.getStatusIncome()}`);
 
 let getAllDate = function () {
   for (let item in appData) {
     console.log(`Наша программа включает в себя данные: ${item} =${appData[item]}`);
   }
 };
-getAllDate();
+// getAllDate();
+
+
+let getUppercase = function() {
+  let newIncome = [];
+  for (let element in appData.income) {
+      newIncome.push( element[0].toUpperCase() + element.slice(1) );
+    }
+    console.log(newIncome.join(", "));
+  let newExpenses = appData.addExpenses.map(function(item) {
+    return item[0].toUpperCase() + item.slice(1);
+  });
+  console.log(newExpenses.join(", "));
+  };
+
+getUppercase();
+
+
+
+   
+
+  
+
+
+
+
