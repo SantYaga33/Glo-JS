@@ -1,8 +1,7 @@
 
 let week = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
     day = new Date(),
-    // currentDay = day.getDay(),
-    currentDay = 0,
+    currentDay = day.getDay(),
     dayOfWeek = document.querySelector('.dayOfWeek');
    
 let getDayOfWeek = function() {
