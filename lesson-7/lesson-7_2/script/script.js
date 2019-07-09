@@ -22,6 +22,12 @@ let startElement              = document.querySelector('#start'),
     targetAmountElement       = document.querySelector('.target-amount'),
     periodSelectElement       = document.querySelector('.period-select');
 
+
+
+    // Я мог бы использовать  доступ через методы .getElementsByTagName .getElementsByClassName .getElementById,
+    // но насколько я понимаю новымы методами .querySelector(All) манипуляция элементами проще 
+
+
     console.log(startElement, incomePluseElement, expensesPluseElement, checkBoxElement, additionalItemElement, budgetDayElement, budgetMonthElement, expensesMonthElement );
     console.log(accumulatedMonthElement, additionalIncomeElement, additionalExpensesElement, incomePeriodElement, targetMonthElement, salaryAmountElement);
     console.log(incomeTitleElement, incomeAmountElement, expensesTitleElement, expensesAmountElement, targetAmountElement, periodSelectElement, additionalExpItemElement);
