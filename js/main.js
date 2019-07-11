@@ -133,11 +133,3 @@ let getUppercase = function() {
 getUppercase();
 
 
-
-   
-
-  
-
-
-
-
