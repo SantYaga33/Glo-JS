@@ -27,7 +27,8 @@ let startElement = document.querySelector('#start'),
   incomeItemsElement = document.querySelectorAll('.income-items'),
   allInputTextElement = document.querySelectorAll('input[type=text]');
 
-
+  startElement.disabled = true;
+     
 let appData = {
   income: {},
   incomeMonth: 0,
@@ -44,11 +45,7 @@ let appData = {
   numberRequests: 2,
 
   start: function () {
-    // do {
-    //   startElement.setAttribute('disabled', 'disabled');
-    // } while (isNaN(salaryAmountElement.value) || salaryAmountElement.value == '' || salaryAmountElement.value == null);
-
-
+   
     appData.budget = +salaryAmountElement.value;
     appData.getExpenses();
     appData.getIncome();
@@ -61,12 +58,14 @@ let appData = {
 
     appData.showResult();
     // блок поведения инпутов и кнопок после нажатия кнопки рассчитать
+    allInputTextElement = document.querySelectorAll('input[type=text]');
     allInputTextElement.forEach(function (item) {
       item.setAttribute('disabled', 'disabled');
       incomePluseElement.style.display = 'none';
       expensesPluseElement.style.display = 'none';
       startElement.style.display = 'none';
       cancelElement.style.display = 'block';
+      startElement.disabled = true;
 
     });
   },
@@ -92,6 +91,13 @@ let appData = {
     }
   },
 
+  removeExpensesBlock: function () {
+    expensesItemsElement = document.querySelectorAll('.expenses-items');
+    for (let i = 1; i < expensesItemsElement.length; i++) {
+      expensesItemsElement[i].remove();
+    }
+  },
+
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItemsElement[0].cloneNode(true);
     incomeItemsElement[0].parentNode.insertBefore(cloneIncomeItem, incomePluseElement);
@@ -99,6 +105,13 @@ let appData = {
     if (incomeItemsElement.length === 3) {
       incomePluseElement.style.display = 'none';
     }
+  },
+
+  removeIncomeBlock: function () {
+  incomeItemsElement = document.querySelectorAll('.income-items');
+  for (let i = 1; i < incomeItemsElement.length; i++) {
+    incomeItemsElement[i].remove();
+  }
   },
 
   getExpenses: function () {
@@ -229,9 +242,14 @@ let appData = {
   },
 
   getReset: function () {
+    allInputTextElement = document.querySelectorAll('input[type=text]');
+    appData.removeIncomeBlock();
+    appData.removeExpensesBlock();
     allInputTextElement.forEach(function (item) {
       item.removeAttribute('disabled', 'disabled');
       item.value = item.defaultValue;
+      periodAmountElement.textContent = periodSelectElement.value;
+      periodSelectElement.value = '1';
       incomePluseElement.style.display = 'block';
       expensesPluseElement.style.display = 'block';
       startElement.style.display = 'block';
@@ -239,7 +257,14 @@ let appData = {
     });
   }
 };
-
+ salaryAmountElement.addEventListener('input', function () {
+  if (salaryAmountElement.value !== '') {
+    startElement.disabled = false;
+  } else {
+     startElement.disabled = true;
+  }
+ });
+ 
 startElement.addEventListener('click', appData.start.bind(appData));
 cancelElement.addEventListener('click', appData.getReset.bind(appData));
 expensesPluseElement.addEventListener('click', appData.addExpensesBlock);
