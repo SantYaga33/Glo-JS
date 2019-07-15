@@ -238,7 +238,9 @@ let appData = {
   changeSelect: function () {
     periodAmountElement.textContent = periodSelectElement.value;
     appData.calcSaveMoney();
-    appData.showResult();
+    if (salaryAmountElement.value) {
+      appData.showResult();
+    }
   },
 
   getReset: function () {
