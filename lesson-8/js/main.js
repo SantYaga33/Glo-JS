@@ -28,7 +28,7 @@ let startElement = document.querySelector('#start'),
   allInputTextElement = document.querySelectorAll('input[type=text]');
 
   startElement.disabled = true;
-     
+
 let appData = {
   income: {},
   incomeMonth: 0,
@@ -82,13 +82,64 @@ let appData = {
   
   },
 
+  getRestrictToIntegerExp: function () {
+    expensesItemsElement = document.querySelectorAll('.expenses-items');
+    expensesItemsElement.forEach(function (item) {
+      let cashExpenses = item.querySelector('.expenses-amount');
+      cashExpenses.addEventListener('input', restrictToInteger);
+      function restrictToInteger() {
+        cashExpenses.value = cashExpenses.value.replace(/[^\d.]/g, '');
+      }
+    });
+  },
+
+  getRestrictToStringExp: function () {
+    expensesItemsElement = document.querySelectorAll('.expenses-items');
+    expensesItemsElement.forEach(function (item) {
+      let itemExpenses = item.querySelector('.expenses-title');
+      itemExpenses.addEventListener('input', restrictToString);
+
+      function restrictToString() {
+        itemExpenses.value = itemExpenses.value.replace(/[^\А-Яа-я\s\.\,\:\;\!\?\...\-]/g, '');
+      }
+    });
+  },
+
+  getRestrictToIntegerInc: function () {
+    incomeItemsElement = document.querySelectorAll('.income-items');
+    incomeItemsElement.forEach(function (item) {
+      let cashExpenses = item.querySelector('.income-amount');
+      cashExpenses.addEventListener('input', restrictToInteger);
+      function restrictToInteger() {
+        cashExpenses.value = cashExpenses.value.replace(/[^\d.]/g, '');
+      }
+    });
+  },
+
+  getRestrictToStringInc: function () {
+    incomeItemsElement = document.querySelectorAll('.income-items');
+    incomeItemsElement.forEach(function (item) {
+      let itemExpenses = item.querySelector('.income-title');
+      itemExpenses.addEventListener('input', restrictToString);
+
+      function restrictToString() {
+        itemExpenses.value = itemExpenses.value.replace(/[^\А-Яа-я\s\.\,\:\;\!\?\...\-]/g, '');
+      }
+    });
+  },
+
   addExpensesBlock: function () {
     let cloneExpensesItem = expensesItemsElement[0].cloneNode(true);
+    cloneExpensesItem.querySelector('.expenses-title').value = '';
+    cloneExpensesItem.querySelector('.expenses-amount').value = '';
     expensesItemsElement[0].parentNode.insertBefore(cloneExpensesItem, expensesPluseElement);
     expensesItemsElement = document.querySelectorAll('.expenses-items');
+    appData.getRestrictToIntegerExp();
+    appData.getRestrictToStringExp();
     if (expensesItemsElement.length === 3) {
-      expensesPluseElement.style.display = 'none';
+       expensesPluseElement.style.display = 'none';
     }
+
   },
 
   removeExpensesBlock: function () {
@@ -100,8 +151,11 @@ let appData = {
 
   addIncomeBlock: function () {
     let cloneIncomeItem = incomeItemsElement[0].cloneNode(true);
+    cloneIncomeItem.querySelector('.income-title').value = '';
+    cloneIncomeItem.querySelector('.income-amount').value = '';
     incomeItemsElement[0].parentNode.insertBefore(cloneIncomeItem, incomePluseElement);
     incomeItemsElement = document.querySelectorAll('.income-items');
+    appData.getRestrictToIntegerInc();
     if (incomeItemsElement.length === 3) {
       incomePluseElement.style.display = 'none';
     }
@@ -267,7 +321,12 @@ let appData = {
      startElement.disabled = true;
   }
  });
- 
+
+appData.getRestrictToIntegerExp();
+appData.getRestrictToIntegerInc();
+appData.getRestrictToStringExp();
+appData.getRestrictToStringInc();
+
 startElement.addEventListener('click', appData.start.bind(appData));
 cancelElement.addEventListener('click', appData.getReset.bind(appData));
 expensesPluseElement.addEventListener('click', appData.addExpensesBlock);
