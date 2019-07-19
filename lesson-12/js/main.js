@@ -21,18 +21,23 @@ function countTimer(deadline) {
   function updateClock() {
     let timer = getTimeRemaining();
 
-    timerHoursElem.textContent = timer.hours;
-    timerMinutesElem.textContent = timer.minutes;
-    timerSecondsElem.textContent = timer.seconds;
+    timerHoursElem.textContent   = timer.hours   < 10 ? '0' + timer.hours   : timer.hours;
+    timerMinutesElem.textContent = timer.minutes < 10 ? '0' + timer.minutes : timer.minutes;
+    timerSecondsElem.textContent = timer.seconds < 10 ? '0' + timer.seconds : timer.seconds;
 
-    if (timer.timeRemaining > 0) {
-      setTimeout(updateClock, 1000);
+    if (--timer.timeRemaining > 0) {
+      setInterval(updateClock, 1000);
+    } else {
+       timerHoursElem.textContent   = '00';
+       timerMinutesElem.textContent = '00';
+       timerSecondsElem.textContent = '00';
+
     }
   }
   updateClock();
 }
 
-countTimer('1 july 2020');
+countTimer('22 july 2019');
 
 
 
