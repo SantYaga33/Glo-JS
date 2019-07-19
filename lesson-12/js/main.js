@@ -37,7 +37,7 @@ function countTimer(deadline) {
   updateClock();
 }
 
-countTimer('22 july 2019');
+countTimer('12 july 2019');
 
 
 
