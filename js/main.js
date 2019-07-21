@@ -50,7 +50,6 @@ window.addEventListener('DOMContentLoaded', function () {
         if (currentHour == 0) {
           currentHour = 12;
         }
-       
         return {
           timeRemaining,
           hours,
@@ -63,7 +62,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
     function updateClock() {
       let timer = getTimeRemaining();
-     
       let dd = 'AM',
         currentHour = timer.hours;
       if (currentHour >= 12) {
@@ -87,9 +85,6 @@ window.addEventListener('DOMContentLoaded', function () {
     }
     updateClock();
   }
-
   countTimer('1 January  2020');
-
-
-
+  
 });
