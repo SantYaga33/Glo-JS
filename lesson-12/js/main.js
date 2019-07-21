@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
     };
     updateClock();
   };
-  countTimer('22 july 2019');
+  countTimer('24 july 2019');
 
 // Меню
   const toggleMenu = () => {
@@ -95,6 +95,40 @@ window.addEventListener('DOMContentLoaded', function() {
   };
   togglePopUp();
 
+// Табы 
+  const tab = () => {
+    const tabHeaderElem  = document.querySelector('.service-header'),
+          tabElem        = tabHeaderElem.querySelectorAll('.service-header-tab'),
+          tabContentElem = document.querySelectorAll('.service-tab ');
+   
+    const toggleTabContent = (index) => {
+      for (let i = 0; i < tabContentElem.length; i++) {
+        if (index === i) {
+          tabElem[i].classList.add('activ');
+          tabContentElem[i].classList.remove('d-none'); 
+        } else {
+          tabElem[i].classList.remove('activ');
+          tabContentElem[i].classList.add('d-none'); 
+        }
+      }
+    };
 
+    tabHeaderElem.addEventListener('click', (event) => {
+      let target = event.target;
+  
+      console.log('target: ', target);
+      target = target.closest('.servise-header-tab');
+      console.log('target: ', target);
+      if (target) {
+        tabElem.forEach( (item, i) => {
+          if (item === target) {
+            toggleTabContent(i);
+          }
+        });
+      }
+    });
+
+  };
+  tab();
 });
 
