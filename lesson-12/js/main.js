@@ -104,10 +104,10 @@ window.addEventListener('DOMContentLoaded', function() {
     const toggleTabContent = (index) => {
       for (let i = 0; i < tabContentElem.length; i++) {
         if (index === i) {
-          tabElem[i].classList.add('activ');
+          tabElem[i].classList.add('activе');
           tabContentElem[i].classList.remove('d-none'); 
         } else {
-          tabElem[i].classList.remove('activ');
+          tabElem[i].classList.remove('activе');
           tabContentElem[i].classList.add('d-none'); 
         }
       }
@@ -117,7 +117,7 @@ window.addEventListener('DOMContentLoaded', function() {
       let target = event.target;
   
       console.log('target: ', target);
-      target = target.closest('.servise-header-tab');
+      target = target.closest('.service-header-tab');
       console.log('target: ', target);
       if (target) {
         tabElem.forEach( (item, i) => {
