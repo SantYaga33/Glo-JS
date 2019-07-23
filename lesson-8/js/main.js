@@ -51,18 +51,18 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
   AppData.prototype.start = function () {
    
     this.budget = +salaryAmountElement.value;
-    this.prototype.getExpenses();
-    this.prototype.getIncome();
-    this.prototype.getExpensesMonth();
-    this.prototype.getInfoDeposit();
-    this.prototype.getIncomeMonth();
-    this.prototype.getBudget();
-    this.prototype.getAddExpenses();
-    this.prototype.getAddIncome();
-    this.prototype.calcSaveMoney();
+    this.getExpenses();
+    this.getIncome();
+    this.getExpensesMonth();
+    this.getInfoDeposit();
+    this.getIncomeMonth();
+    this.getBudget();
+    this.getAddExpenses();
+    this.getAddIncome();
+    this.calcSaveMoney();
 
-    AppData.prototype.showResult();
     // блок поведения инпутов и кнопок после нажатия кнопки рассчитать
+  AppData.prototype.showResult = function() {
     allInputTextElement = document.querySelectorAll('input[type=text]');
     allInputTextElement.forEach( (item) => {
       item.setAttribute('disabled', 'disabled');
@@ -333,16 +333,18 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
   }
  }),
 
-AppData.prototype.getRestrictToIntegerExp();
-AppData.prototype.getRestrictToIntegerInc();
-AppData.prototype.getRestrictToStringExp();
-AppData.prototype.getRestrictToStringInc();
+const appData = new AppData();
+
+appData.getRestrictToIntegerExp();
+appData.getRestrictToIntegerInc();
+appData.getRestrictToStringExp();
+appData.getRestrictToStringInc();
 
 
-AppData.prototype.getCheckDeposit();
+appData.prototype.getCheckDeposit();
 
-startElement.addEventListener('click', AppData.prototype.start.bind(AppData));
-cancelElement.addEventListener('click', AppData.prototype.getReset.bind(AppData));
-expensesPluseElement.addEventListener('click', AppData.prototype.addExpensesBlock);
-incomePluseElement.addEventListener('click', AppData.prototype.addIncomeBlock);
-periodSelectElement.addEventListener('change', AppData.prototype.changeSelect);
+startElement.addEventListener('click', appData.prototype.start.bind(appData));
+cancelElement.addEventListener('click', appData.prototype.getReset.bind(appData));
+expensesPluseElement.addEventListener('click', appData.prototype.addExpensesBlock);
+incomePluseElement.addEventListener('click', appData.prototype.addIncomeBlock);
+periodSelectElement.addEventListener('change', appData.prototype.changeSelect);
