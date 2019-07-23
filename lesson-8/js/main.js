@@ -81,8 +81,8 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     expensesMonthElement.value = this.expensesMonth;
     additionalExpensesElement.value = this.addExpenses.join(', ');
     additionalIncomeElement.value = this.addIncome.join(', ');
-    targetMonthElement.value = AppData.prototype.getTargetMonth();
-    incomePeriodElement.value = AppData.prototype.calcSaveMoney();
+    targetMonthElement.value = this.getTargetMonth();
+    incomePeriodElement.value = this.calcSaveMoney();
     periodAmountElement.textContent = periodSelectElement.value;
   
   };
@@ -139,8 +139,8 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     cloneExpensesItem.querySelector('.expenses-amount').value = '';
     expensesItemsElement[0].parentNode.insertBefore(cloneExpensesItem, expensesPluseElement);
     expensesItemsElement = document.querySelectorAll('.expenses-items');
-    AppData.prototype.getRestrictToIntegerExp();
-    AppData.prototype.getRestrictToStringExp();
+    this.getRestrictToIntegerExp();
+    this.getRestrictToStringExp();
     if (expensesItemsElement.length === 3) {
        expensesPluseElement.style.display = 'none';
     }
@@ -160,15 +160,15 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     cloneIncomeItem.querySelector('.income-amount').value = '';
     incomeItemsElement[0].parentNode.insertBefore(cloneIncomeItem, incomePluseElement);
     incomeItemsElement = document.querySelectorAll('.income-items');
-    AppData.prototype.getRestrictToIntegerInc();
+    this.getRestrictToIntegerInc();
     if (incomeItemsElement.length === 3) {
       incomePluseElement.style.display = 'none';
     }
   };
 
    AppData.prototype.removeIncomeBlock = function () {
-  incomeItemsElement = document.querySelectorAll('.income-items');
-  for (let i = 1; i < incomeItemsElement.length; i++) {
+    incomeItemsElement = document.querySelectorAll('.income-items');
+    for (let i = 1; i < incomeItemsElement.length; i++) {
     incomeItemsElement[i].remove();
   }
   };
