@@ -108,10 +108,10 @@ window.addEventListener('DOMContentLoaded', function() {
     const toggleTabContent = (index) => {
       for (let i = 0; i < tabContentElem.length; i++) {
         if (index === i) {
-          tabElem[i].classList.add('activе');
+          tabElem[i].classList.add('active');
           tabContentElem[i].classList.remove('d-none'); 
         } else {
-          tabElem[i].classList.remove('activе');
+          tabElem[i].classList.remove('active');
           tabContentElem[i].classList.add('d-none'); 
         }
       }
