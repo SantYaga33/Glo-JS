@@ -32,34 +32,34 @@ let startElement = document.querySelector('#start'),
 
   startElement.disabled = true;
 
-const AppData = function() {
-  this.income = {};
-  this.addIncome = [];
-  this.expenses = {};
-  this.addExpenses = [];
-  this.incomeMonth = 0;
-  this.deposit = false;
-  this.percentDeposit = 0;
-  this.moneyDeposit = 0;
-  this.budget = 0;
-  this.budgetDay = 0;
-  this.budgetMonth = 0;
-  this.expensesMonth = 0;
-  this.numberRequests = 2;
+const AppData = function (income = {}, addIncome = [], expenses = {}, addExpenses = [], incomeMonth = 0, deposit = false, percentDeposit = 0, moneyDeposit = 0, budget = 0, budgetDay = 0, budgetMonth = 0, expensesMonth = 0, numberRequests = 2) {
+  this.income = income;
+  this.addIncome = addIncome;
+  this.expenses = expenses;
+  this.addExpenses = addExpenses;
+  this.incomeMonth = incomeMonth;
+  this.deposit = deposit;
+  this.percentDeposit = percentDeposit;
+  this.moneyDeposit = moneyDeposit;
+  this.budget = budget;
+  this.budgetDay = budgetDay;
+  this.budgetMonth = budgetMonth;
+  this.expensesMonth = expensesMonth;
+  this.numberRequests = numberRequests;
 };
 
   AppData.prototype.start = function () {
    
     this.budget = +salaryAmountElement.value;
-    AppData.prototype.getExpenses();
-    AppData.prototype.getIncome();
-    AppData.prototype.getExpensesMonth();
-    AppData.prototype.getInfoDeposit();
-    AppData.prototype.getIncomeMonth();
-    AppData.prototype.getBudget();
-    AppData.prototype.getAddExpenses();
-    AppData.prototype.getAddIncome();
-    AppData.prototype.calcSaveMoney();
+    this.prototype.getExpenses();
+    this.prototype.getIncome();
+    this.prototype.getExpensesMonth();
+    this.prototype.getInfoDeposit();
+    this.prototype.getIncomeMonth();
+    this.prototype.getBudget();
+    this.prototype.getAddExpenses();
+    this.prototype.getAddIncome();
+    this.prototype.calcSaveMoney();
 
     AppData.prototype.showResult();
     // блок поведения инпутов и кнопок после нажатия кнопки рассчитать
