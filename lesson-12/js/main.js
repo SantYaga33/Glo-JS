@@ -70,6 +70,7 @@ window.addEventListener('DOMContentLoaded', function() {
     popUpElem.style.transform = 'scale(0)';
    
     if (screen.width <= 480) {
+      popUpElem.style.transform = 'scale(1)';
       popUpButtonElem.forEach((elem) => {
         elem.addEventListener('click', () => {
           popUpElem.style.display = 'block';
