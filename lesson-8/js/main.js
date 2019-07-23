@@ -302,16 +302,16 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
   };
    AppData.prototype.changeSelect = function () {
     periodAmountElement.textContent = periodSelectElement.value;
-    AppData.prototype.calcSaveMoney();
+    this.calcSaveMoney();
     if (salaryAmountElement.value) {
-      AppData.prototype.showResult();
+      this.showResult();
     }
   };
 
   AppData.prototype.getReset = function () {
     allInputTextElement = document.querySelectorAll('input[type=text]');
-    AppData.prototype.removeIncomeBlock();
-    AppData.prototype.removeExpensesBlock();
+    this.removeIncomeBlock();
+    this.removeExpensesBlock();
     allInputTextElement.forEach( (item) => {
       item.removeAttribute('disabled', 'disabled');
       item.value = item.defaultValue;
