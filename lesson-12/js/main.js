@@ -40,17 +40,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
 // Меню
   const toggleMenu = () => {
-    const buttonMenuElem  = document.querySelector('.menu'),
-          menuElem        = document.querySelector('menu'),
-          closeButtonElem = document.querySelector('.close-btn'),
-          menuItemsElem   = menuElem.querySelectorAll('ul > li');
+    const bodyElem = document.querySelector(`body`),
+          menuElem = document.querySelector(`menu`);
 
     const handlerMenu = () => {
       menuElem.classList.toggle('active-menu');
     };
-    buttonMenuElem.addEventListener('click', handlerMenu);   
-    closeButtonElem.addEventListener('click', handlerMenu);
-    menuItemsElem.forEach((elem) => elem.addEventListener('click', handlerMenu));
+
+    bodyElem.addEventListener('click', (e) => {
+      if (e.target.matches(`.menu > img`) || e.target.matches(`.close-btn`) || e.target.matches(`ul > li > a`)) {
+        handlerMenu();
+      } else if (e.target.closest(`menu`) === null) {
+        menuElem.classList.remove(`active-menu`);
+      }
+      return;
+    });
   };
   toggleMenu();
 
@@ -115,10 +119,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     tabHeaderElem.addEventListener('click', (event) => {
       let target = event.target;
-  
-      console.log('target: ', target);
       target = target.closest('.service-header-tab');
-      console.log('target: ', target);
       if (target) {
         tabElem.forEach( (item, i) => {
           if (item === target) {
