@@ -49,8 +49,6 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
 };
   
   AppData.prototype.start = function () {
-    console.log(this);
-    console.log(this);
     this.budget = +salaryAmountElement.value;
     this.getExpenses();
     this.getIncome();
@@ -61,20 +59,17 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     this.getAddExpenses();
     this.getAddIncome();
     this.calcSaveMoney();
-   
-    console.log(' this.budget: ',  this.budget);
-  };
+  
+    this.showResult ();
     // блок поведения инпутов и кнопок после нажатия кнопки рассчитать
-  AppData.prototype.showResult = function() {
-    allInputTextElement = document.querySelectorAll('input[type=text]');
-    allInputTextElement.forEach( (item) => {
-      item.setAttribute('disabled', 'disabled');
-      incomePluseElement.style.display = 'none';
-      expensesPluseElement.style.display = 'none';
-      startElement.style.display = 'none';
-      cancelElement.style.display = 'block';
-      startElement.disabled = true;
-
+      allInputTextElement = document.querySelectorAll('input[type=text]');
+      allInputTextElement.forEach( (item) => {
+        item.setAttribute('disabled', 'disabled');
+        incomePluseElement.style.display = 'none';
+        expensesPluseElement.style.display = 'none';
+        startElement.style.display = 'none';
+        cancelElement.style.display = 'block';
+        startElement.disabled = true;
     });
   };
 
@@ -142,8 +137,8 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     cloneExpensesItem.querySelector('.expenses-amount').value = '';
     expensesItemsElement[0].parentNode.insertBefore(cloneExpensesItem, expensesPluseElement);
     expensesItemsElement = document.querySelectorAll('.expenses-items');
-    this.getRestrictToIntegerExp();
-    this.getRestrictToStringExp();
+    AppData.getRestrictToIntegerExp();
+    AppData.getRestrictToStringExp();
     if (expensesItemsElement.length === 3) {
        expensesPluseElement.style.display = 'none';
     }
@@ -163,7 +158,7 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     cloneIncomeItem.querySelector('.income-amount').value = '';
     incomeItemsElement[0].parentNode.insertBefore(cloneIncomeItem, incomePluseElement);
     incomeItemsElement = document.querySelectorAll('.income-items');
-    this.getRestrictToIntegerInc();
+    AppData.getRestrictToIntegerInc();
     if (incomeItemsElement.length === 3) {
       incomePluseElement.style.display = 'none';
     }
@@ -190,6 +185,7 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
         return;
       }
       this.expenses[itemExpenses] = cashExpenses;
+     
     });
   };
 
@@ -235,7 +231,7 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
         depositBankElement.style.display = 'inline-block';
         depositAmountkElement.style.display = 'inline-block';
         this.deposit = true;
-        depositBankElement.addEventListener('change', () => {
+        depositBankElement.addEventListener('change', function () {
           let selectIndex = this.options[this.selectedIndex].value;
           if (selectIndex === 'other') {
             depositPercentElement.style.display = 'inline-block';
@@ -272,11 +268,13 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
    AppData.prototype.getBudget = function () {
     this.budgetMonth = this.budget + this.incomeMonth - this.expensesMonth + (this.moneyDeposit * this.percentDeposit / 12);
     this.budgetDay = Math.floor(this.budgetMonth / 30);
-    return Math.floor(this.budgetMonth);
+    let result = Math.floor(this.budgetMonth);
+     return result;
   };
 
    AppData.prototype.getTargetMonth = function () {
-    return Math.ceil(targetAmountElement.value / AppData.prototype.getBudget());
+     return Math.ceil(targetAmountElement.value / this.getBudget());
+    
   };
 
    AppData.prototype.getStatusIncome = function () {
@@ -301,13 +299,18 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
   };
 
    AppData.prototype.calcSaveMoney = function () {
-    return this.budgetMonth * periodSelectElement.value;
+      let result = this.budgetMonth * periodSelectElement.value;
+    return result;
   };
+
    AppData.prototype.changeSelect = function () {
     periodAmountElement.textContent = periodSelectElement.value;
-    this.calcSaveMoney();
+    appData.calcSaveMoney();
     if (salaryAmountElement.value) {
-      this.showResult();
+    appData.showResult();
+      console.log(`тут проблемка-this это 'ползунок'
+      поэтому временно функции вызваны как 
+      методы нового обьекта appData`);
     }
   };
 
@@ -339,19 +342,16 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
 
 const appData = new AppData();
 
-console.log('appData: ', appData);
-
 appData.getRestrictToIntegerExp();
 appData.getRestrictToIntegerInc();
 appData.getRestrictToStringExp();
 appData.getRestrictToStringInc();
 
-
 appData.getCheckDeposit();
-console.log('appData.getCheckDeposit();: ', appData.getCheckDeposit());
 
-startElement.addEventListener('click', appData.start.bind(AppData));
-cancelElement.addEventListener('click', appData.getReset.bind(AppData));
+
+startElement.addEventListener('click', appData.start.bind(appData));
+cancelElement.addEventListener('click', appData.getReset.bind(appData));
 expensesPluseElement.addEventListener('click', appData.addExpensesBlock);
 incomePluseElement.addEventListener('click', appData.addIncomeBlock);
 periodSelectElement.addEventListener('change', appData.changeSelect);
