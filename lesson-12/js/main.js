@@ -58,6 +58,25 @@ window.addEventListener('DOMContentLoaded', function() {
   };
   toggleMenu();
 
+// плавная прокрутка до якоря 
+const anchors = document.querySelectorAll('a[href*="#"]');
+for (let anchor of anchors) {
+  anchor.addEventListener('click', (e) => {
+    e.preventDefault();
+    const ourId = anchor.getAttribute('href');
+     
+      console.log('  ourId: ',   ourId);
+      console.log(document.querySelector('' + ourId));
+    document.querySelector('' + ourId).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+}
+// прокрутка по блоку
+
+
+
 // popup
   const togglePopUp = () => {
     const popUpElem   = document.querySelector('.popup'),
