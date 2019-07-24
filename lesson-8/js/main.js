@@ -47,9 +47,10 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
   this.expensesMonth = expensesMonth;
   this.numberRequests = numberRequests;
 };
-
+  
   AppData.prototype.start = function () {
-   
+    console.log(this);
+    console.log(this);
     this.budget = +salaryAmountElement.value;
     this.getExpenses();
     this.getIncome();
@@ -60,6 +61,8 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
     this.getAddExpenses();
     this.getAddIncome();
     this.calcSaveMoney();
+   
+    console.log(' this.budget: ',  this.budget);
   };
     // блок поведения инпутов и кнопок после нажатия кнопки рассчитать
   AppData.prototype.showResult = function() {
@@ -336,6 +339,8 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
 
 const appData = new AppData();
 
+console.log('appData: ', appData);
+
 appData.getRestrictToIntegerExp();
 appData.getRestrictToIntegerInc();
 appData.getRestrictToStringExp();
@@ -343,9 +348,10 @@ appData.getRestrictToStringInc();
 
 
 appData.getCheckDeposit();
+console.log('appData.getCheckDeposit();: ', appData.getCheckDeposit());
 
-startElement.addEventListener('click', appData.start.bind(appData));
-cancelElement.addEventListener('click', appData.getReset.bind(appData));
+startElement.addEventListener('click', appData.start.bind(AppData));
+cancelElement.addEventListener('click', appData.getReset.bind(AppData));
 expensesPluseElement.addEventListener('click', appData.addExpensesBlock);
 incomePluseElement.addEventListener('click', appData.addIncomeBlock);
 periodSelectElement.addEventListener('change', appData.changeSelect);
