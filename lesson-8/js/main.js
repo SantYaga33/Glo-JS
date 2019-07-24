@@ -327,6 +327,11 @@ const AppData = function (income = {}, addIncome = [], expenses = {}, addExpense
       expensesPluseElement.style.display = 'block';
       startElement.style.display = 'block';
       cancelElement.style.display = 'none';
+
+       depositBankElement.style.display = 'none';
+       depositAmountkElement.style.display = 'none';
+       depositAmountkElement.value = '';
+       this.deposit = false;
     });
   };
 
