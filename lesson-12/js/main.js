@@ -73,9 +73,6 @@ for (let anchor of anchors) {
     });
   });
 }
-// прокрутка по блоку
-
-
 
 // popup
   const togglePopUp = () => {
