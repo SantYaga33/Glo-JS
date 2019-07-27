@@ -153,7 +153,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
           buttonElem = document.querySelectorAll('.portfolio-btn'),
           sliderElem = document.querySelector('.portfolio-content'),
           ulElem = document.querySelector('.portfolio-dots');
-          
+
 // создаем точки для слайдера ( они закомм-ны в верстке)
     let currentSlide = 0, interval;
     for (let i = 0; i < slideElem.length; i++) {
@@ -175,7 +175,6 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       prevSlide(slideElem, currentSlide, 'portfolio-item-active');
       prevSlide(dotElem, currentSlide, 'dot-active');
       currentSlide++;
-      console.log('авто плаэй');
       if (currentSlide >= slideElem.length) {
         currentSlide = 0;
       }
@@ -241,6 +240,30 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 
   };
   slider();
+
+  // смена аватарок при наведении - меняем img на img из дата атрибута
+  const changeImg = () => {
+    const imgCommandElem = document.querySelectorAll('.command__photo');
+    let oldimage;
+    imgCommandElem.forEach((elem) => {
+      elem.addEventListener('mouseenter', (event) => {
+      oldimage = event.target.src;
+      event.target.src = event.target.dataset.img;
+      });
+    });
+    imgCommandElem.forEach((elem) => {
+      elem.addEventListener('mouseleave', (event) => {
+        console.log('мышь ушла');
+        event.target.src = oldimage;
+      });
+    });
+
+  };
+  changeImg();
+
+  // калькулятор
+  
+
 
 });
 
