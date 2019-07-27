@@ -59,17 +59,18 @@ window.addEventListener('DOMContentLoaded', function() {
   toggleMenu();
 
 // плавная прокрутка до якоря 
-// const anchors = document.querySelectorAll('a[href*="#"], a[href*="#"]:not(.prev, .next)');
-// for (let anchor of anchors) {
-//   anchor.addEventListener('click', (event) => {
-//     event.preventDefault();
-//     const ourId = anchor.getAttribute('href');
-//     document.querySelector('' + ourId).scrollIntoView({
-//       behavior: 'smooth',
-//       block: 'start'
-//     });
-//   });
-// };
+const anchors = document.querySelectorAll('a[href*="#"]');
+  anchors.forEach((item) => {
+  item.addEventListener('click', (event) => {
+    event.preventDefault();
+    const ourId = item.getAttribute('href');
+    document.querySelector('' + ourId).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+});
+
 
 // popup
   const togglePopUp = () => {
@@ -150,11 +151,18 @@ window.addEventListener('DOMContentLoaded', function() {
   const slider = () => {
     const slideElem = document.querySelectorAll('.portfolio-item'),
           buttonElem = document.querySelectorAll('.portfolio-btn'),
-          dotElem = document.querySelectorAll('.dot'),
-          sliderElem = document.querySelector('.portfolio-content');
-
+          sliderElem = document.querySelector('.portfolio-content'),
+          ulElem = document.querySelector('.portfolio-dots');
+          
+// создаем точки для слайдера ( они закомм-ны в верстке)
     let currentSlide = 0, interval;
-
+    for (let i = 0; i < slideElem.length; i++) {
+      let newLiElem = document.createElement('li');
+      newLiElem.classList.add('dot');
+      ulElem.appendChild(newLiElem);
+    }
+    const dotElem = document.querySelectorAll('.dot');
+    dotElem[0].classList.add('dot-active');
     const prevSlide = (elem, index, strClass) => {
       elem[index].classList.remove(strClass);
     };
@@ -167,6 +175,7 @@ window.addEventListener('DOMContentLoaded', function() {
       prevSlide(slideElem, currentSlide, 'portfolio-item-active');
       prevSlide(dotElem, currentSlide, 'dot-active');
       currentSlide++;
+      console.log('авто плаэй');
       if (currentSlide >= slideElem.length) {
         currentSlide = 0;
       }
@@ -222,7 +231,8 @@ window.addEventListener('DOMContentLoaded', function() {
     sliderElem.addEventListener('mouseout', (event) => {
       if (event.target.matches('.portfolio-btn') ||
         event.target.matches('.dot')) {
-        startSlide(2000);
+        console.log('стартанул сново!');
+        startSlide();
       }
     });
 
