@@ -294,6 +294,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         total = price * typeValue * squareValue * cauntValue * dayvalue;
       }
      
+     
       const numAnimate = () => {
         let number = 0;
         let interval = setInterval( () => {
@@ -303,7 +304,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
           } else {
             clearInterval(interval);
           }
-        }, 2);
+        }, 1);
       };
       numAnimate();
 
@@ -313,6 +314,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
     calcBlockElem.addEventListener('change', (event) => {
       const target = event.target;
       if (target.matches('select') || target.matches('input')) {
+        totalValueElem.textContent = 0;
         countSum();
       }
     });
