@@ -323,25 +323,25 @@ const anchors = document.querySelectorAll('a[href*="#"]');
   calc();
 
   // валидация полей ввода в формах 
-  // const allPhone1  = document.getElementById('form1-phone'),
-  //       allPhone2  = document.getElementById('form2-phone'),
-  //       allMessage = document.getElementById('form2-message'),
-  //       allPhone3  = document.getElementById('form3-phone'),
-  //       allEmail1  = document.getElementById('form1-email'),
-  //       allEmail2  = document.getElementById('form2-email'),
-  //       allEmail3  = document.getElementById('form3-email'),
-  //       allName1   = document.getElementById('form1-name'),
-  //       allName2   = document.getElementById('form2-name'),
-  //       allName3   = document.getElementById('form3-name');
+  const allPhone1  = document.getElementById('form1-phone'),
+        allPhone2  = document.getElementById('form2-phone'),
+        allMessage = document.getElementById('form2-message'),
+        allPhone3  = document.getElementById('form3-phone'),
+        allEmail1  = document.getElementById('form1-email'),
+        allEmail2  = document.getElementById('form2-email'),
+        allEmail3  = document.getElementById('form3-email'),
+        allName1   = document.getElementById('form1-name'),
+        allName2   = document.getElementById('form2-name'),
+        allName3   = document.getElementById('form3-name');
 
 
-  // const myRegEx1 = /\+\d{11}/,
-  //       myRegEx2 = /\w+@\w+\.\w{2,3}/,
-  //       myRegEx3 = /[ А-Яа-яЁё]/;
+  const myRegEx1 = /\+\d{11}/,
+        myRegEx2 = /\w+@\w+\.\w{2,3}/,
+        myRegEx3 = /[ А-Яа-яЁё]/;
 
-  // allPhone1.value = allPhone2.value = allPhone3.value = myRegEx1;
-  // allEmail1.value = allEmail2.value = allEmail3.value = myRegEx2;
-  // allName1.value = allName2.value = allName3.value = allMessage.value = myRegEx3;
+  allPhone1.value = allPhone2.value = allPhone3.value = myRegEx1;
+  allEmail1.value = allEmail2.value = allEmail3.value = myRegEx2;
+  allName1.value = allName2.value = allName3.value = allMessage.value = myRegEx3;
 
   //ajax запросы и отправка формы на сервер 
   const sendForm = () => {
