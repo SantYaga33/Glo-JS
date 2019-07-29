@@ -264,7 +264,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
   let calcBlockElem = document.querySelector('.calc-block'),
   inputcalcBlockElem = calcBlockElem.querySelectorAll('input');
   inputcalcBlockElem.forEach((elem) => {
-    elem.value = /\d/;
+    elem.value = elem.value.replace(/[^0-9]/g, '');
   });
 
   // калькулятор
@@ -323,88 +323,32 @@ const anchors = document.querySelectorAll('a[href*="#"]');
   calc();
 
   // валидация полей ввода в формах 
-  const allPhone1  = document.getElementById('form1-phone'),
-        allPhone2  = document.getElementById('form2-phone'),
-        allMessage = document.getElementById('form2-message'),
-        allPhone3  = document.getElementById('form3-phone'),
-        allEmail1  = document.getElementById('form1-email'),
-        allEmail2  = document.getElementById('form2-email'),
-        allEmail3  = document.getElementById('form3-email'),
-        allName1   = document.getElementById('form1-name'),
-        allName2   = document.getElementById('form2-name'),
-        allName3   = document.getElementById('form3-name');
-
-  let myRegEx1 = /[^0-9+]/ig,
-      myRegEx2 = /\w+@\w+\.\w{2,3}/ig,
-      myRegEx3 = /[ А-Яа-яЁё]/ig;
-
-  allPhone1.addEventListener('input', () => {
-    allPhone1.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  const allInput = document.querySelectorAll('input');
+  allInput.forEach((elem) => {
+    if (elem.name === 'user_phone') {
+      elem.addEventListener('input', () => {
+        elem.value = elem.value.replace(/[^0-9+]/ig, '');
+      });
+    }
   });
 
-  allPhone2.addEventListener('input', () => {
-    allPhone2.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  allInput.forEach((elem) => {
+    if (elem.name === 'user_name' || elem.name === 'user_message') {
+      elem.addEventListener('input', () => {
+        elem.value = elem.value.replace(/[^ А-Яа-яЁё]/ig, '');
+      });
+    }
   });
 
-  allPhone3.addEventListener('input', () => {
-    allPhone3.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  allInput.forEach((elem) => {
+    if (elem.name === 'user_email') {
+      elem.addEventListener('input', () => {
+        elem.value = elem.value.replace(/[^(\w+@\w+\.\w{2,3})]/ig, '');
+      });
+    }
   });
 
-   allEmail1.addEventListener('input', () => {
-     allEmail1.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
-  });
-
-   allEmail2.addEventListener('input', () => {
-     allEmail2.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
-  });
-
-   allEmail3.addEventListener('input', () => {
-     allEmail3.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
-  });
-
-  allName1.addEventListener('input', () => {
-    allName1.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
-  });
-
-  allName2.addEventListener('input', () => {
-    allName2.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
-  });
-
-  allName3.addEventListener('input', () => {
-    allName3.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
-  });
-
-
-
-
-
-
-  // const allPhone  = document.querySelectorAll('.form-phone'),
-  //       allEmaile = document.querySelectorAll('.form-email'),
-  //       allName   = document.querySelectorAll('.form-name');
- 
-  // let myRegEx1 =  /\+\d{11}/,
-  //     myRegEx2 = /\w+@\w+\.\w{2,3}/,
-  //     myRegEx3 = /[ А-Яа-яЁё]/;
- 
-  // allPhone.forEach((elem) => {
-  //   elem.addEventListener('input', () => {
-  //     elem.value = elem.value.replace(/\+\d{11}/ig, '');
-  //   });
-  // });
-
-  // allEmaile.forEach((elem) => {
-  //   elem.addEventListener('input', () => {
-  //     elem.value = elem.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
-  //   });
-  // });
-
-  // allName.forEach((elem) => {
-  //   elem.addEventListener('input', () => {
-  //     elem.value = elem.value.replace(/[ А-Яа-яЁё]/ig, '');
-  //   });
-  // });
-
+  
 
 
   //ajax запросы и отправка формы на сервер 
