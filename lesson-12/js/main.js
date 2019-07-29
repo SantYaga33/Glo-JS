@@ -341,9 +341,13 @@ const anchors = document.querySelectorAll('a[href*="#"]');
   });
 
   allInput.forEach((elem) => {
+    let myRegEx = /\w+@\w+\.\w{2,3}/ig;
     if (elem.name === 'user_email') {
-      elem.addEventListener('input', () => {
-        elem.value = elem.value.replace(/[^(\w+@\w+\.\w{2,3})]/ig, '');
+      elem.addEventListener('change', () => {
+        if (myRegEx.test(elem.value) === false) {
+          alert('Введите корректный email адресс');
+          elem.value = '';
+        }
       });
     }
   });
