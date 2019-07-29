@@ -298,7 +298,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       const numAnimate = () => {
         let number = 0;
         let interval = setInterval( () => {
-          number++;
+          number += 10;
           if (number <= total) { 
             totalValueElem.textContent = number;
           } else {
