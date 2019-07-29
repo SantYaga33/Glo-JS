@@ -373,9 +373,15 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       });
       postData(body, () => {
         statusMessage.textContent = sucsessMessage;
+        setTimeout(() => {
+          statusMessage.textContent = '';
+        }, 5000);
       }, (error) => {
         statusMessage.textContent = errorMessage;
         console.log(error);
+          setTimeout(() => {
+            statusMessage.textContent = '';
+          }, 5000);
       });
     });
     // обработчит отправки данных для popup формы
@@ -397,9 +403,15 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 
       postData(body, () => {
         statusMessage.textContent = sucsessMessage;
+        setTimeout(() => {
+          statusMessage.textContent = '';
+        }, 5000);
       }, (error) => {
         statusMessage.textContent = errorMessage;
         console.log(error);
+        setTimeout(() => {
+          statusMessage.textContent = '';
+        }, 5000);
       });
     });
     // обработчик отправки данных для 2й формы (блок остались вопросы)
@@ -421,9 +433,15 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 
       postData(body, () => {
         statusMessage.textContent = sucsessMessage;
+        setTimeout(() => {
+          statusMessage.textContent = '';
+        }, 5000);
       }, (error) => {
         statusMessage.textContent = errorMessage;
         console.log(error);
+        setTimeout(() => {
+          statusMessage.textContent = '';
+        }, 5000);
       });
     });
 
