@@ -334,14 +334,78 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         allName2   = document.getElementById('form2-name'),
         allName3   = document.getElementById('form3-name');
 
+  let myRegEx1 = /[^0-9+]/ig,
+      myRegEx2 = /\w+@\w+\.\w{2,3}/ig,
+      myRegEx3 = /[ А-Яа-яЁё]/ig;
 
-  const myRegEx1 = /\+\d{11}/,
-        myRegEx2 = /\w+@\w+\.\w{2,3}/,
-        myRegEx3 = /[ А-Яа-яЁё]/;
+  allPhone1.addEventListener('input', () => {
+    allPhone1.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  });
 
-  allPhone1.value = allPhone2.value = allPhone3.value = myRegEx1;
-  allEmail1.value = allEmail2.value = allEmail3.value = myRegEx2;
-  allName1.value = allName2.value = allName3.value = allMessage.value = myRegEx3;
+  allPhone2.addEventListener('input', () => {
+    allPhone2.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  });
+
+  allPhone3.addEventListener('input', () => {
+    allPhone3.value = allPhone1.value.replace(/[^0-9+]/ig, '');
+  });
+
+   allEmail1.addEventListener('input', () => {
+     allEmail1.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
+  });
+
+   allEmail2.addEventListener('input', () => {
+     allEmail2.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
+  });
+
+   allEmail3.addEventListener('input', () => {
+     allEmail3.value = allPhone1.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
+  });
+
+  allName1.addEventListener('input', () => {
+    allName1.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
+  });
+
+  allName2.addEventListener('input', () => {
+    allName2.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
+  });
+
+  allName3.addEventListener('input', () => {
+    allName3.value = allPhone1.value.replace(/[ А-Яа-яЁё]/ig, '');
+  });
+
+
+
+
+
+
+  // const allPhone  = document.querySelectorAll('.form-phone'),
+  //       allEmaile = document.querySelectorAll('.form-email'),
+  //       allName   = document.querySelectorAll('.form-name');
+ 
+  // let myRegEx1 =  /\+\d{11}/,
+  //     myRegEx2 = /\w+@\w+\.\w{2,3}/,
+  //     myRegEx3 = /[ А-Яа-яЁё]/;
+ 
+  // allPhone.forEach((elem) => {
+  //   elem.addEventListener('input', () => {
+  //     elem.value = elem.value.replace(/\+\d{11}/ig, '');
+  //   });
+  // });
+
+  // allEmaile.forEach((elem) => {
+  //   elem.addEventListener('input', () => {
+  //     elem.value = elem.value.replace(/\w+@\w+\.\w{2,3}/ig, '');
+  //   });
+  // });
+
+  // allName.forEach((elem) => {
+  //   elem.addEventListener('input', () => {
+  //     elem.value = elem.value.replace(/[ А-Яа-яЁё]/ig, '');
+  //   });
+  // });
+
+
 
   //ajax запросы и отправка формы на сервер 
   const sendForm = () => {
