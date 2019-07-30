@@ -340,6 +340,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
     }
   });
 
+  // проверка поля ввода емайл (ошибки накладываются с ошибками при отправки формы ) - код для себя
   const allForms = document.querySelectorAll('form');
   const statusMessage = document.createElement('div');
   statusMessage.style.cssText = 'font-size: 20px; color: red;';
@@ -348,18 +349,18 @@ const anchors = document.querySelectorAll('a[href*="#"]');
   allForms.forEach((form) => {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      let target = e.target; 
+      let target = e.target,
+          currentInput = target.querySelector('input[type="email"]');
       allInput.forEach((elem) => {
         let myRegEx = /\w+@\w+\.\w{2,3}/ig;
         if (elem.name === 'user_email') {
           if (myRegEx.test(elem.value) === false) {
             target.appendChild(statusMessage);
             statusMessage.textContent = 'Вы ввели не корректный адресс';
-            // elem.focus();
+            currentInput.focus();
             setTimeout(() => {
               statusMessage.textContent = '';
             }, 3000);
-            
           }else {
             return;
           }
@@ -367,21 +368,6 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       });
     });
   });
-
-
-  // allInput.forEach((elem) => {
-  //   let myRegEx = /\w+@\w+\.\w{2,3}/ig;
-  //   if (elem.name === 'user_email') {
-  //     elem.addEventListener('change', () => {
-  //       if (myRegEx.test(elem.value) === false) {
-  //         alert('Введите корректный email адресс');
-  //         elem.value = '';
-  //       }
-  //     });
-  //   }
-  // });
-
-  
 
 
   //ajax запросы и отправка формы на сервер 
