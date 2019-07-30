@@ -340,17 +340,46 @@ const anchors = document.querySelectorAll('a[href*="#"]');
     }
   });
 
-  allInput.forEach((elem) => {
-    let myRegEx = /\w+@\w+\.\w{2,3}/ig;
-    if (elem.name === 'user_email') {
-      elem.addEventListener('change', () => {
-        if (myRegEx.test(elem.value) === false) {
-          alert('Введите корректный email адресс');
-          elem.value = '';
+  const allForms = document.querySelectorAll('form');
+  const statusMessage = document.createElement('div');
+  statusMessage.style.cssText = 'font-size: 20px; color: red;';
+
+  
+  allForms.forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let target = e.target; 
+      allInput.forEach((elem) => {
+        let myRegEx = /\w+@\w+\.\w{2,3}/ig;
+        if (elem.name === 'user_email') {
+          if (myRegEx.test(elem.value) === false) {
+            target.appendChild(statusMessage);
+            statusMessage.textContent = 'Вы ввели не корректный адресс';
+            // elem.focus();
+            setTimeout(() => {
+              statusMessage.textContent = '';
+            }, 3000);
+            
+          }else {
+            return;
+          }
         }
       });
-    }
+    });
   });
+
+
+  // allInput.forEach((elem) => {
+  //   let myRegEx = /\w+@\w+\.\w{2,3}/ig;
+  //   if (elem.name === 'user_email') {
+  //     elem.addEventListener('change', () => {
+  //       if (myRegEx.test(elem.value) === false) {
+  //         alert('Введите корректный email адресс');
+  //         elem.value = '';
+  //       }
+  //     });
+  //   }
+  // });
 
   
 
