@@ -353,8 +353,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
           currentInput = target.querySelector('input[type="email"]');
       allInput.forEach((elem) => {
         let myRegEx = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        if (elem.name === 'user_email') {
-          if (myRegEx.test(elem.value) === false) {
+        if (myRegEx.test(currentInput.value) === false) {
             target.appendChild(statusMessage);
             statusMessage.textContent = 'Вы ввели не корректный адресс';
             currentInput.focus();
@@ -364,7 +363,6 @@ const anchors = document.querySelectorAll('a[href*="#"]');
           }else {
             return;
           }
-        }
       });
     });
   });
