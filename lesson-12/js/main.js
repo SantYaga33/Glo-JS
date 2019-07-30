@@ -352,7 +352,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       let target = e.target,
           currentInput = target.querySelector('input[type="email"]');
       allInput.forEach((elem) => {
-        let myRegEx = /\w+@\w+\.\w{2,3}/ig;
+        let myRegEx = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
         if (elem.name === 'user_email') {
           if (myRegEx.test(elem.value) === false) {
             target.appendChild(statusMessage);
