@@ -477,188 +477,40 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         });
   
     });
-    
-    
-    const postData = (body) => {
-      return new Promise((resolve, reject) => {
-        const request = new XMLHttpRequest();
-        request.open('POST', './server.php');
-        request.setRequestHeader('Content-Type', 'application/json');
-        request.send(JSON.stringify(body));
-        request.addEventListener('readystatechange', () => {
-          if (request.readyState !== 4) {
-            return;
-          }
-          if (request.status === 200) {
-            resolve();
-          } else {
-            reject(request.status);
-          }
-        });
+    //отправка данных с помощью fetch()
+      const postData = (body) => {
+      return fetch('./server.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
       });
     };
+    //отправка данных с помощью promice() и XMLHttpRequest()
+
+    // const postData = (body) => {
+    //   return new Promise((resolve, reject) => {
+    //     const request = new XMLHttpRequest();
+    //     request.open('POST', './server.php');
+    //     request.setRequestHeader('Content-Type', 'application/json');
+    //     request.send(JSON.stringify(body));
+    //     request.addEventListener('readystatechange', () => {
+    //       if (request.readyState !== 4) {
+    //         return;
+    //       }
+    //       if (request.status === 200) {
+    //         resolve();
+    //       } else {
+    //         reject(request.status);
+    //       }
+    //     });
+    //   });
+    // };
 
   };
 
   sendForm();
 
 
-
-// временный запрос с промисами 
-// const getData = (url) => {
-//   return new Promise((resolve, reject) => {
-//     const request = new XMLHttpRequest();
-//     request.open('GET', url);
-//     request.addEventListener('readystatechange', () => {
-//       if (request.readyState !== 4) {
-//         return;
-//       }
-//       if (request.status === 200) {
-//         const response = JSON.parse(request.responseText);
-//         resolve(response);
-//       }else {
-//         reject(request.statusText);
-//       }
-//     });
-//     request.send();
-//   });
-// };
-// const outputPhotos = (data) => {
-//   //тело функции -= что делаем с полученными данными в data
-// };
-// const urlPhotos = 'тут ссылка ';
-// getData(urlPhotos)
-//   .then(outputPhotos)
-//   .catch(errror => console.error(errror));
-  
-
-
-
-
 });
-
-
-
-//копия раб вариант 
-//ajax запросы и отправка формы на сервер 
-// const sendForm = () => {
-//   const errorMessage = 'Что то пошло не так ...',
-//     loadMessage = 'Загрузка ...',
-//     sucsessMessage = 'Спасибо! Мы скоро с Вами свяжемся.';
-
-//   const formElem = document.getElementById('form1'),
-//     formQuestionElem = document.getElementById('form2'),
-//     formPopupElem = document.getElementById('form3');
-
-//   const statusMessage = document.createElement('div');
-//   statusMessage.style.cssText = 'font-size: 20px; color: red;';
-
-//   formElem.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     formElem.appendChild(statusMessage);
-//     statusMessage.textContent = loadMessage;
-
-//     let formData = new FormData(formElem);
-//     let body = {};
-//     formData.forEach((val, key) => {
-//       body[key] = val;
-//     });
-
-//     let allInput = formElem.querySelectorAll('input');
-//     allInput.forEach((elem) => {
-//       elem.value = '';
-//     });
-//     postData(body, () => {
-//       statusMessage.textContent = sucsessMessage;
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     }, (error) => {
-//       statusMessage.textContent = errorMessage;
-//       console.log(error);
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     });
-//   });
-//   // обработчит отправки данных для popup формы
-//   formPopupElem.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     formPopupElem.appendChild(statusMessage);
-//     statusMessage.textContent = loadMessage;
-
-//     let formData = new FormData(formPopupElem);
-//     let body = {};
-//     formData.forEach((val, key) => {
-//       body[key] = val;
-//     });
-
-//     let allInput = formPopupElem.querySelectorAll('input');
-//     allInput.forEach((elem) => {
-//       elem.value = '';
-//     });
-
-//     postData(body, () => {
-//       statusMessage.textContent = sucsessMessage;
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     }, (error) => {
-//       statusMessage.textContent = errorMessage;
-//       console.log(error);
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     });
-//   });
-//   // обработчик отправки данных для 2й формы (блок остались вопросы)
-//   formQuestionElem.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     formQuestionElem.appendChild(statusMessage);
-//     statusMessage.textContent = loadMessage;
-
-//     let formData = new FormData(formQuestionElem);
-//     let body = {};
-//     formData.forEach((val, key) => {
-//       body[key] = val;
-//     });
-
-//     let allInput = formQuestionElem.querySelectorAll('input');
-//     allInput.forEach((elem) => {
-//       elem.value = '';
-//     });
-
-//     postData(body, () => {
-//       statusMessage.textContent = sucsessMessage;
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     }, (error) => {
-//       statusMessage.textContent = errorMessage;
-//       console.log(error);
-//       setTimeout(() => {
-//         statusMessage.textContent = '';
-//       }, 5000);
-//     });
-//   });
-
-
-//   const postData = (body, outputData, errorData) => {
-//     const request = new XMLHttpRequest();
-//     request.addEventListener('readystatechange', () => {
-//       if (request.readyState !== 4) {
-//         return;
-//       }
-//       if (request.status === 200) {
-//         outputData();
-//       } else {
-//         errorData(request.status);
-//       }
-//     });
-//     request.open('POST', './server.php');
-//     request.setRequestHeader('Content-Type', 'application/json');
-//     request.send(JSON.stringify(body));
-//   };
-// };
-
-// sendForm();
