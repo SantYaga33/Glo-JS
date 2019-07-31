@@ -13,8 +13,6 @@ allButtonsElem.forEach((button) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     let target = e.target;
-   
-    console.log(' target: ',  target);
     if (target.matches('.dog')) {
       getData(dog)
         .then((response) => {
@@ -24,7 +22,6 @@ allButtonsElem.forEach((button) => {
            return (response.json());
           })
           .then((img) => {
-            console.log(img);
             let image = img.url;
             console.log(image);
             cardElem.style.cssText = `background-image: url(${image}); 
@@ -46,7 +43,6 @@ allButtonsElem.forEach((button) => {
          })
          .then((img) => {
            let image = img.file;
-           console.log( image);
            cardElem.style.cssText = `background-image: url(${image}); 
            background-size: auto;
            background-repeat: no-repeat;
@@ -61,7 +57,6 @@ allButtonsElem.forEach((button) => {
           method: 'GET',
           mode: 'no-cors',
           cache: 'default',
-
         });
       };
       getData(fox)
@@ -69,9 +64,15 @@ allButtonsElem.forEach((button) => {
           if (response.status !== 200) {
             throw new Error('Похоже не получили фото');
           }
-          console(response);
+          console(response.json());
         })
         .then((img) => {
+           let image = img;
+           console.log(image);
+           cardElem.style.cssText = `background-image: url(${image}); 
+           background-size: auto;
+           background-repeat: no-repeat;
+           background-position: center;`;
           console.log(img);
         })
         .catch((error) => {
