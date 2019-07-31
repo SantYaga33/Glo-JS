@@ -397,7 +397,10 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         elem.value ='';
       });
       postData(body)
-      .then(() => {
+      .then((response) => {
+          if (response.status !== 200) {
+            throw new Error('Status network nt 200');
+          }
           statusMessage.textContent = sucsessMessage;
           setTimeout(() => {
             statusMessage.textContent = '';
@@ -430,7 +433,10 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       });
 
       postData(body)
-        .then(() => {
+        .then((response) => {
+           if (response.status !== 200) {
+             throw new Error('Status network nt 200');
+           }
           statusMessage.textContent = sucsessMessage;
           setTimeout(() => {
             statusMessage.textContent = '';
@@ -462,7 +468,10 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       });
 
       postData(body)
-       .then(() => {
+       .then((response) => {
+         if (response.status !== 200){
+           throw new Error('Status network nt 200');
+         }
           statusMessage.textContent = sucsessMessage;
           setTimeout(() => {
             statusMessage.textContent = '';
