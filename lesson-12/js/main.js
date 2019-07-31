@@ -396,18 +396,20 @@ const anchors = document.querySelectorAll('a[href*="#"]');
       allInput.forEach((elem) => {
         elem.value ='';
       });
-      postData(body).then(() => {
-        statusMessage.textContent = sucsessMessage;
-        setTimeout(() => {
-          statusMessage.textContent = '';
-        }, 5000);
-      }, (error) => {
-        statusMessage.textContent = errorMessage;
-        console.log(error);
+      postData(body)
+      .then(() => {
+          statusMessage.textContent = sucsessMessage;
           setTimeout(() => {
             statusMessage.textContent = '';
           }, 5000);
-      });
+        })
+        .catch((error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+            setTimeout(() => {
+              statusMessage.textContent = '';
+            }, 5000);
+        });
 
     });
     // обработчит отправки данных для popup формы
@@ -427,18 +429,20 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         elem.value = '';
       });
 
-      postData(body).then(() => {
-        statusMessage.textContent = sucsessMessage;
-        setTimeout(() => {
-          statusMessage.textContent = '';
-        }, 5000);
-      }, (error) => {
-        statusMessage.textContent = errorMessage;
-        console.log(error);
-        setTimeout(() => {
-          statusMessage.textContent = '';
-        }, 5000);
-      });
+      postData(body)
+        .then(() => {
+          statusMessage.textContent = sucsessMessage;
+          setTimeout(() => {
+            statusMessage.textContent = '';
+          }, 5000);
+        })
+         .catch( (error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+          setTimeout(() => {
+            statusMessage.textContent = '';
+          }, 5000);
+        });
     });
     // обработчик отправки данных для 2й формы (блок остались вопросы)
     formQuestionElem.addEventListener('submit', (e) => {
@@ -457,18 +461,20 @@ const anchors = document.querySelectorAll('a[href*="#"]');
         elem.value = '';
       });
 
-      postData(body).then(() => {
-        statusMessage.textContent = sucsessMessage;
-        setTimeout(() => {
-          statusMessage.textContent = '';
-        }, 5000);
-      }, (error) => {
-        statusMessage.textContent = errorMessage;
-        console.log(error);
-        setTimeout(() => {
-          statusMessage.textContent = '';
-        }, 5000);
-      });
+      postData(body)
+       .then(() => {
+          statusMessage.textContent = sucsessMessage;
+          setTimeout(() => {
+            statusMessage.textContent = '';
+          }, 5000);
+        })
+        .catch( (error) => {
+          statusMessage.textContent = errorMessage;
+          console.log(error);
+          setTimeout(() => {
+            statusMessage.textContent = '';
+          }, 5000);
+        });
   
     });
     
