@@ -473,7 +473,7 @@ const anchors = document.querySelectorAll('a[href*="#"]');
     });
     
     
-    const postData = (body, outputData, errorData) => {
+    const postData = (body) => {
       return new Promise((resolve, reject) => {
         const request = new XMLHttpRequest();
         request.open('POST', './server.php');
