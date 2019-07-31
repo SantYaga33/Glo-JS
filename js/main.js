@@ -13,12 +13,70 @@ allButtonsElem.forEach((button) => {
   button.addEventListener('click', (e) => {
     e.preventDefault();
     let target = e.target;
-    if (target.contains('.dog')) {
-      getData(dog);
-    } else if (target.contains('.cat')) {
-      getData(cat);
-    }else if (target.contains('.fox')) {
-      getData(fox);
+   
+    console.log(' target: ',  target);
+    if (target.matches('.dog')) {
+      getData(dog)
+        .then((response) => {
+          if(response.status !== 200) {
+            throw new Error('Похоже не получили фото');
+          }
+           return (response.json());
+          })
+          .then((img) => {
+            console.log(img);
+            let image = img.url;
+            console.log(image);
+            cardElem.style.cssText = `background-image: url(${image}); 
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center;`;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        
+    } else if (target.matches('.cat')) {
+       getData(cat)
+         .then((response) => {
+           if (response.status !== 200) {
+             throw new Error('Похоже не получили фото');
+           }
+           return (response.json());
+         })
+         .then((img) => {
+           let image = img.file;
+           console.log( image);
+           cardElem.style.cssText = `background-image: url(${image}); 
+           background-size: auto;
+           background-repeat: no-repeat;
+           background-position: center;`;
+         })
+         .catch((error) => {
+           console.error(error);
+         });
+    }else if (target.matches('.fox')) {
+      const getData = (fox) => {
+        return fetch(fox, {
+          method: 'GET',
+          mode: 'no-cors',
+          cache: 'default',
+
+        });
+      };
+      getData(fox)
+        .then((response) => {
+          if (response.status !== 200) {
+            throw new Error('Похоже не получили фото');
+          }
+          console(response);
+        })
+        .then((img) => {
+          console.log(img);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     } 
   });
 });
@@ -29,27 +87,8 @@ const getData = (type) => {
     mode: 'cors',
     cache: 'default',
 
-  })
-  .then()
+
+  });
 };
 
 
-
-
-
-
-
-// postData(body)
-//   .then(() => {
-//     statusMessage.textContent = sucsessMessage;
-//     setTimeout(() => {
-//       statusMessage.textContent = '';
-//     }, 5000);
-//   })
-//   .catch((error) => {
-//     statusMessage.textContent = errorMessage;
-//     console.log(error);
-//     setTimeout(() => {
-//       statusMessage.textContent = '';
-//     }, 5000);
-//   });
