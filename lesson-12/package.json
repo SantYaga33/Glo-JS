@@ -1,7 +1,6 @@
 {
   "name": "lesson-12",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --open --mode=development",
@@ -26,5 +25,6 @@
     "fetch-polyfill": "^0.8.2",
     "formdata-polyfill": "^3.0.18",
     "nodelist-foreach-polyfill": "^1.2.0"
-  }
+  },
+  "description": ""
 }
