@@ -14,7 +14,7 @@ allButtonsElem.forEach((button) => {
       getData(cat);
     }else if (target.matches('.fox')) {
       let fox = 'request.php';
-       getData(fox);
+      getData(fox);
     }
   });
 });
