@@ -1,7 +1,8 @@
   const togglePopUp = () => {
     const popUpElem = document.querySelector('.popup'),
       popUpButtonElem = document.querySelectorAll('.popup-btn'),
-      popUpCloseElem = document.querySelector('.popup-close');
+      popUpCloseElem = document.querySelector('.popup-close'),
+      bodyElem = document.querySelector('body');
 
     popUpElem.style.transitionProperty = 'all';
     popUpElem.style.transitionDuration = 0.3 + 's';
@@ -24,6 +25,8 @@
         elem.addEventListener('click', () => {
           popUpElem.style.display = 'block';
           popUpElem.style.transform = 'scale(1)';
+          bodyElem.style.overflow = 'hidden';
+
         });
       });
       popUpCloseElem.addEventListener('click', () => {
@@ -31,6 +34,7 @@
         popUpElem.style.transitionDuration = 0.3 + 's';
         popUpElem.style.transitionTimingFunction = 'ease';
         popUpElem.style.transform = 'scale(0)';
+        bodyElem.style.overflow = 'auto';
         setTimeout(() => {
           popUpElem.style.display = 'none';
         }, 400);
