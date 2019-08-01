@@ -18,7 +18,7 @@ allButtonsElem.forEach((button) => {
     }
   });
 });
-0
+
 const getData = (type) => {
   return fetch(type, {
     method: 'GET',
