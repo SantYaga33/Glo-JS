@@ -18,7 +18,7 @@ allButtonsElem.forEach((button) => {
     }
   });
 });
-
+0
 const getData = (type) => {
   return fetch(type, {
     method: 'GET',
@@ -35,6 +35,10 @@ const getData = (type) => {
       let myObj = JSON.parse(data);
       for (var key in myObj) {
         console.log(myObj[key]);
+        if (myObj[key].search('mp4') > 1) {
+          console.log('мр4 - не обрабатываем');
+         return;
+        }
         cardElem.style.cssText = `background-image: url(${myObj[key]}); 
               background-size: auto;
               background-repeat: no-repeat;
