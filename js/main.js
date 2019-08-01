@@ -32,12 +32,8 @@ const getData = (type) => {
       return (response.text());
     })
     .then((data) => {
-      
-      console.log('   data: ',    data);
       let myObj = JSON.parse(data);
       for (var key in myObj) {
-        console.log(myObj[key]);
-        console.log(key);
         if (myObj[key].search('mp4') > 1) {
           console.log('мр4 - не обрабатываем');
          return;
