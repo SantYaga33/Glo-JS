@@ -39,10 +39,6 @@ const anchors = document.querySelectorAll('a[href*="#"]');
 anchors.forEach((item) => {
   item.addEventListener('click', (event) => {
     event.preventDefault();
-    const target = event.target;
-    if ( target.matches('.prev') || target.matches('.next') ) {
-      return;
-    }
     const ourId = item.getAttribute('href');
     document.querySelector('' + ourId).scrollIntoView({
       behavior: 'smooth',
@@ -52,7 +48,7 @@ anchors.forEach((item) => {
 });
 
 //  поля ввода для калькулятора ( только цифры)
-const calcBlockElem = document.querySelector('.calc-block'),
+let calcBlockElem = document.querySelector('.calc-block'),
 inputcalcBlockElem = calcBlockElem.querySelectorAll('input');
 inputcalcBlockElem.forEach((elem) => {
   elem.value = elem.value.replace(/[^0-9]/g, '');
@@ -77,9 +73,9 @@ allInput.forEach((elem) => {
 });
 
 // проверка поля ввода емайл (ошибки накладываются с ошибками при отправки формы ) - код для себя
-// const allForms = document.querySelectorAll('form'),
-//   statusMessage = document.createElement('div');
-// statusMessage.style.cssText = 'font-size: 20px; color: red;';
+const allForms = document.querySelectorAll('form'),
+  statusMessage = document.createElement('div');
+statusMessage.style.cssText = 'font-size: 20px; color: red;';
 
 // allForms.forEach((form) => {
 //   form.addEventListener('submit', (e) => {

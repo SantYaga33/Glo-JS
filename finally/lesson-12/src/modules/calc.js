@@ -1,6 +1,6 @@
   const calc = (price = 100) => {
-    const calcBlockElem = document.querySelector('.calc-block'),
-      calcTypeElem = document.querySelector('.calc-type'),
+    let calcBlockElem = document.querySelector('.calc-block');
+    const calcTypeElem = document.querySelector('.calc-type'),
       calcSquareElem = document.querySelector('.calc-square'),
       calcDayElem = document.querySelector('.calc-day'),
       calcCountElem = document.querySelector('.calc-count'),
@@ -26,6 +26,7 @@
         total = price * typeValue * squareValue * cauntValue * dayvalue;
       }
 
+
       const numAnimate = () => {
         let number = 0;
         let interval = setInterval(() => {
@@ -38,6 +39,8 @@
         }, 1);
       };
       numAnimate();
+
+
     };
 
     calcBlockElem.addEventListener('change', (event) => {

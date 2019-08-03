@@ -10,18 +10,19 @@
    const statusMessage = document.createElement('div');
    statusMessage.style.cssText = 'font-size: 20px; color: red;';
 
-   formElem.addEventListener('submit', (e) => {
+   const checkCurrentForm = (currentForm) => {
+   currentForm.addEventListener('submit', (e) => {
      e.preventDefault();
-     formElem.appendChild(statusMessage);
+     currentForm.appendChild(statusMessage);
      statusMessage.textContent = loadMessage;
 
-     let formData = new FormData(formElem);
+     let formData = new FormData(currentForm);
      let body = {};
      formData.forEach((val, key) => {
        body[key] = val;
      });
 
-     let allInput = formElem.querySelectorAll('input');
+     const allInput = currentForm.querySelectorAll('input');
      allInput.forEach((elem) => {
        elem.value = '';
      });
@@ -44,77 +45,8 @@
        });
 
    });
-   // обработчит отправки данных для popup формы
-   formPopupElem.addEventListener('submit', (e) => {
-     e.preventDefault();
-     formPopupElem.appendChild(statusMessage);
-     statusMessage.textContent = loadMessage;
+  };
 
-     let formData = new FormData(formPopupElem);
-     let body = {};
-     formData.forEach((val, key) => {
-       body[key] = val;
-     });
-
-     let allInput = formPopupElem.querySelectorAll('input');
-     allInput.forEach((elem) => {
-       elem.value = '';
-     });
-
-     postData(body)
-       .then((response) => {
-         if (response.status !== 200) {
-           throw new Error('Status network nt 200');
-         }
-         statusMessage.textContent = sucsessMessage;
-         setTimeout(() => {
-           statusMessage.textContent = '';
-         }, 5000);
-       })
-       .catch((error) => {
-         statusMessage.textContent = errorMessage;
-         console.log(error);
-         setTimeout(() => {
-           statusMessage.textContent = '';
-         }, 5000);
-       });
-   });
-   // обработчик отправки данных для 2й формы (блок остались вопросы)
-   formQuestionElem.addEventListener('submit', (e) => {
-     e.preventDefault();
-     formQuestionElem.appendChild(statusMessage);
-     statusMessage.textContent = loadMessage;
-
-     let formData = new FormData(formQuestionElem);
-     let body = {};
-     formData.forEach((val, key) => {
-       body[key] = val;
-     });
-
-     let allInput = formQuestionElem.querySelectorAll('input');
-     allInput.forEach((elem) => {
-       elem.value = '';
-     });
-
-     postData(body)
-       .then((response) => {
-         if (response.status !== 200) {
-           throw new Error('Status network nt 200');
-         }
-         statusMessage.textContent = sucsessMessage;
-         setTimeout(() => {
-           statusMessage.textContent = '';
-         }, 5000);
-       })
-       .catch((error) => {
-         statusMessage.textContent = errorMessage;
-         console.log(error);
-         setTimeout(() => {
-           statusMessage.textContent = '';
-         }, 5000);
-       });
-
-   });
    //отправка данных с помощью fetch()
    const postData = (body) => {
      return fetch('./server.php', {
@@ -125,6 +57,10 @@
        body: JSON.stringify(body)
      });
    };
+
+   checkCurrentForm(formElem);
+   checkCurrentForm(formQuestionElem);
+   checkCurrentForm(formPopupElem);
    //отправка данных с помощью promice() и XMLHttpRequest()
 
    // const postData = (body) => {

@@ -1,5 +1,5 @@
  const countTimer = (deadline) => {
-   const timerHoursElem = document.querySelector('#timer-hours'),
+   let timerHoursElem = document.querySelector('#timer-hours'),
      timerMinutesElem = document.querySelector('#timer-minutes'),
      timerSecondsElem = document.querySelector('#timer-seconds');
 
@@ -32,6 +32,7 @@
        timerHoursElem.textContent = '00';
        timerMinutesElem.textContent = '00';
        timerSecondsElem.textContent = '00';
+
      }
    };
    updateClock();
